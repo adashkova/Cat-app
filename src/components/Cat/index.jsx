@@ -7,7 +7,7 @@ const Cat = ({ cat }) => {
 
   const handleShowDescription = e => {
     const rect = e.target.getBoundingClientRect();
-
+    console.log(rect);
     setCoords({
       left: rect.x + rect.width / 2 - rect.x - 40,
       top: rect.y + window.scrollY,
@@ -15,6 +15,7 @@ const Cat = ({ cat }) => {
 
     setIsVisiblePopup(true);
   };
+  console.log(coords);
 
   const handleHideDescription = () => {
     setIsVisiblePopup(false);
@@ -33,6 +34,7 @@ const Cat = ({ cat }) => {
       <button onClick={e => handleShowDescription(e)} className="cat-info-btn">
         More info...
       </button>
+
       {isVisiblePopup && (
         <Popup
           description={description}
