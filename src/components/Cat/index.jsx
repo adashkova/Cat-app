@@ -15,17 +15,19 @@ const Cat = ({ cat }) => {
   const { name, image, description } = cat;
 
   return (
-    <div className="container">
-      <div className="cat-block">
-        <img
-          src={image}
-          alt={name}
-          className={`cat-img ${isVisiblePopup ? ' animation' : ''}`}
-        />
-        <div>{name}</div>
-        <button onClick={handleShowDescription} className="cat-info-btn">
-          More info...
-        </button>
+    <>
+      <div className="container">
+        <div className="cat-block">
+          <img
+            src={image}
+            alt={name}
+            className={`cat-img ${isVisiblePopup ? ' animation' : ''}`}
+          />
+          <div>{name}</div>
+          <button onClick={handleShowDescription} className="cat-info-btn">
+            More info...
+          </button>
+        </div>
       </div>
       {isVisiblePopup && (
         <Popup
@@ -34,7 +36,7 @@ const Cat = ({ cat }) => {
           handleHideDescription={handleHideDescription}
         />
       )}
-    </div>
+    </>
   );
 };
 

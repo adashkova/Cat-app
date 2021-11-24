@@ -7,17 +7,15 @@ function App() {
   const [cats, setCats] = useState([]);
 
   useEffect(() => {
-    fetchCats()
-      .then(res => res.json())
-      .then(result => {
-        const cats = getUniqueCats(result);
-        setCats(cats);
-      });
+    fetchCats().then(result => {
+      const cats = getUniqueCats(result);
+      setCats(cats);
+    });
   }, []);
 
   return (
     <div className="cats-container">
-      {cats && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
+      {cats.length && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
     </div>
   );
 }
