@@ -7,9 +7,9 @@ const Cat = ({ cat }) => {
 
   const handleShowDescription = e => {
     const rect = e.target.getBoundingClientRect();
-    
+
     setCoords({
-      left: rect.x + rect.width / 2 - rect.x - rect.width / 2,
+      left: rect.x + rect.width / 2,
       top: rect.y + window.scrollY,
     });
 
@@ -30,16 +30,17 @@ const Cat = ({ cat }) => {
         className={`cat-img ${isPopupVisible ? ' animation' : ''}`}
       />
       <div>{name}</div>
-      <button onClick={handleShowDescription} className="cat-info-btn">
-        More info...
-      </button>
 
-      {isPopupVisible && (
+      {isPopupVisible ? (
         <Popup
           description={description}
           handleHideDescription={handleHideDescription}
           coords={coords}
         />
+      ) : (
+        <button onClick={handleShowDescription} className="cat-info-btn">
+          More info...
+        </button>
       )}
     </div>
   );
