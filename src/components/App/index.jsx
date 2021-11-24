@@ -14,8 +14,10 @@ function App() {
   }, []);
 
   return (
-    <div className="cats-container">
-      {cats.length && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
+    <div className="wrapper">
+      <div className="cats-container">
+        {cats.length && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
+      </div>
     </div>
   );
 }

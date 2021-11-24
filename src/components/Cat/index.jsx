@@ -3,8 +3,16 @@ import Popup from '../Popup';
 
 const Cat = ({ cat }) => {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
+  const [coords, setCoords] = useState({});
 
-  const handleShowDescription = () => {
+  const handleShowDescription = e => {
+    const rect = e.target.getBoundingClientRect();
+
+    setCoords({
+      left: rect.x + rect.width / 2 - rect.x - 40,
+      top: rect.y + window.scrollY,
+    });
+
     setIsVisiblePopup(true);
   };
 
@@ -15,28 +23,24 @@ const Cat = ({ cat }) => {
   const { name, image, description } = cat;
 
   return (
-    <>
-      <div className="container">
-        <div className="cat-block">
-          <img
-            src={image}
-            alt={name}
-            className={`cat-img ${isVisiblePopup ? ' animation' : ''}`}
-          />
-          <div>{name}</div>
-          <button onClick={handleShowDescription} className="cat-info-btn">
-            More info...
-          </button>
-        </div>
-      </div>
+    <div className="cat-block">
+      <img
+        src={image}
+        alt={name}
+        className={`cat-img ${isVisiblePopup ? ' animation' : ''}`}
+      />
+      <div>{name}</div>
+      <button onClick={e => handleShowDescription(e)} className="cat-info-btn">
+        More info...
+      </button>
       {isVisiblePopup && (
         <Popup
-          isVisiblePopup={isVisiblePopup}
           description={description}
           handleHideDescription={handleHideDescription}
+          coords={coords}
         />
       )}
-    </>
+    </div>
   );
 };
 
