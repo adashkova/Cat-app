@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="wrapper">
       <div className="cats-container">
-        {cats.length && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
+        {cats.length > 0 && cats.map(cat => <Cat key={cat.name} cat={cat} />)}
       </div>
     </div>
   );

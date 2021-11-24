@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import Popup from '../Popup';
 
 const Cat = ({ cat }) => {
-  const [isVisiblePopup, setIsVisiblePopup] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [coords, setCoords] = useState({});
 
   const handleShowDescription = e => {
     const rect = e.target.getBoundingClientRect();
-
+    
     setCoords({
-      left: rect.x + rect.width / 2 - rect.x - 40,
+      left: rect.x + rect.width / 2 - rect.x - rect.width / 2,
       top: rect.y + window.scrollY,
     });
 
-    setIsVisiblePopup(true);
+    setIsPopupVisible(true);
   };
 
   const handleHideDescription = () => {
-    setIsVisiblePopup(false);
+    setIsPopupVisible(false);
   };
 
   const { name, image, description } = cat;
@@ -27,14 +27,14 @@ const Cat = ({ cat }) => {
       <img
         src={image}
         alt={name}
-        className={`cat-img ${isVisiblePopup ? ' animation' : ''}`}
+        className={`cat-img ${isPopupVisible ? ' animation' : ''}`}
       />
       <div>{name}</div>
-      <button onClick={e => handleShowDescription(e)} className="cat-info-btn">
+      <button onClick={handleShowDescription} className="cat-info-btn">
         More info...
       </button>
 
-      {isVisiblePopup && (
+      {isPopupVisible && (
         <Popup
           description={description}
           handleHideDescription={handleHideDescription}
